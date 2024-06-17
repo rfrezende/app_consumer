@@ -15,6 +15,21 @@ pipeline {
         }
       }
     }
+    stage('Atualizar Terraform') {
+        steps {
+            sh 'cd /var/lib/jenkins/criar_infraestrutura && git pull'
+        }
+    }
+    stage('Terraform Init') {
+        steps {
+            sh 'cd /var/lib/jenkins/criar_infraestrutura && terraform init'
+        }
+    }
+    stage('Terraform Apply') {
+      steps {
+          sh 'cd /var/lib/jenkins/criar_infraestrutura && terraform apply -auto-approve'
+      }
+    }
   }
   post {
     always {
