@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t $DOCKERHUB_APP_PROJETO_ADA_IMAGE:consumer .'
+        sh 'docker build --file consumer.Dockerfile --tag $DOCKERHUB_APP_PROJETO_ADA_IMAGE:consumer .'
       }
     }
     stage('Deploy') {
